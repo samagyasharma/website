@@ -1,130 +1,239 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
+// Import images
+import eyesDontLie from "../assets/images/Eyes Don't Lie.jpeg";
+import lakeside from "../assets/images/Lakeside.jpeg";
+import bloomingFlowers from "../assets/images/Blooming Flowers.jpeg";
+import mysticSky from "../assets/images/Mystic Sky.jpeg";
+import image1 from "../assets/images/image1.png";
+import image2 from "../assets/images/image2.png";
+import image3 from "../assets/images/image3.png";
+import image4 from "../assets/images/image4.png";
+import image5 from "../assets/images/image5.png";
+import image6 from "../assets/images/image6.png";
+import image7 from "../assets/images/image7.png";
+import hero from "../assets/images/hero.jpg";
+
+const paintings = [
+  {
+    id: 1,
+    title: "Eyes Don't Lie",
+    artist: "Samagya Sharma",
+    medium: "WaterColor",
+    price: "Rs. 3000",
+    image: eyesDontLie,
+    description: "A captivating portrait that reveals the depth of human emotion through expressive eyes. The delicate watercolor technique brings out the subtle nuances of the subject's gaze.",
+  },
+  {
+    id: 2,
+    title: "Lakeside",
+    artist: "Samagya Sharma",
+    medium: "WaterColor",
+    price: "Rs. 3000",
+    image: lakeside,
+    description: "A serene lakeside scene capturing the tranquility of nature. The gentle ripples and soft reflections create a peaceful atmosphere.",
+  },
+  {
+    id: 3,
+    title: "Blooming Flowers",
+    artist: "Samagya Sharma",
+    medium: "WaterColor",
+    price: "Rs. 3000",
+    image: bloomingFlowers,
+    description: "A vibrant composition of flowers in full bloom, showcasing the delicate beauty of nature through soft watercolor strokes.",
+  },
+  {
+    id: 4,
+    title: "Mystic Sky",
+    artist: "Samagya Sharma",
+    medium: "WaterColor",
+    price: "Rs. 3000",
+    image: mysticSky,
+    description: "An ethereal sky painting that captures the magical moments of twilight with its soft hues and dreamy atmosphere.",
+  },
+  {
+    id: 5,
+    title: "Serene Landscape",
+    artist: "Samagya Sharma",
+    medium: "WaterColor",
+    price: "Rs. 3000",
+    image: image1,
+    description: "A peaceful landscape that invites viewers to immerse themselves in the beauty of nature's tranquility.",
+  },
+  {
+    id: 6,
+    title: "Mountain View",
+    artist: "Samagya Sharma",
+    medium: "WaterColor",
+    price: "Rs. 3000",
+    image: image2,
+    description: "Majestic mountains captured in soft watercolor, showcasing the grandeur of nature's peaks.",
+  },
+  {
+    id: 7,
+    title: "Ocean Breeze",
+    artist: "Samagya Sharma",
+    medium: "WaterColor",
+    price: "Rs. 3000",
+    image: image3,
+    description: "The gentle movement of ocean waves brought to life through fluid watercolor techniques.",
+  },
+  {
+    id: 8,
+    title: "Forest Path",
+    artist: "Samagya Sharma",
+    medium: "WaterColor",
+    price: "Rs. 3000",
+    image: image4,
+    description: "A winding path through a mystical forest, inviting viewers to explore nature's hidden beauty.",
+  },
+  {
+    id: 9,
+    title: "City Lights",
+    artist: "Samagya Sharma",
+    medium: "WaterColor",
+    price: "Rs. 3000",
+    image: image5,
+    description: "Urban landscapes come alive with the glow of city lights, captured in delicate watercolor washes.",
+  },
+  {
+    id: 10,
+    title: "Sunset Horizon",
+    artist: "Samagya Sharma",
+    medium: "WaterColor",
+    price: "Rs. 3000",
+    image: image6,
+    description: "The magical colors of sunset painted with soft watercolor techniques, creating a dreamy atmosphere.",
+  },
+  {
+    id: 11,
+    title: "Morning Mist",
+    artist: "Samagya Sharma",
+    medium: "WaterColor",
+    price: "Rs. 3000",
+    image: image7,
+    description: "The ethereal beauty of morning mist captured in delicate watercolor washes.",
+  },
+  {
+    id: 12,
+    title: "Heroic View",
+    artist: "Samagya Sharma",
+    medium: "WaterColor",
+    price: "Rs. 3000",
+    image: hero,
+    description: "A grand landscape that captures the heroic scale of nature's beauty through watercolor techniques.",
+  },
+];
+
 const PaintingDetails = () => {
-  const navigate = useNavigate();
   const { paintingId } = useParams();
+  const navigate = useNavigate();
+  const [painting, setPainting] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isLiked, setIsLiked] = useState(false);
-
-  // This will be dynamic data later
-  const paintingData = {
-    title: "Whispers of the Forest",
-    description: "A mesmerizing landscape capturing the essence of nature's tranquility. The painting features a serene forest scene with delicate light filtering through the trees, creating a magical atmosphere.",
-    price: 1000,
-    image: `/src/assets/images/image${paintingId}.png`
-  };
+  const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
-    // Simulate loading time
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 500);
+    const foundPainting = paintings.find((p) => p.id === parseInt(paintingId));
+    setPainting(foundPainting);
+    setIsLoading(false);
+  }, [paintingId]);
 
-    return () => clearTimeout(timer);
-  }, []);
+  const handleLikeClick = () => {
+    setIsLiked(!isLiked);
+    if (!isLiked) {
+      setShowPopup(true);
+      setTimeout(() => setShowPopup(false), 3000);
+    }
+  };
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ 
-        background: 'linear-gradient(135deg, #ffd6e0 0%, #fef9c3 100%)',
-      }}>
-        <div className="text-3xl font-seasons">Loading...</div>
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-pink-600"></div>
+      </div>
+    );
+  }
+
+  if (!painting) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center text-center p-4">
+        <h1 className="text-4xl font-lora font-bold text-gray-800 mb-4">
+          Painting not found
+        </h1>
+        <button
+          onClick={() => navigate("/")}
+          className="px-6 py-3 bg-pink-600 text-white rounded-lg hover:bg-pink-700 transition-colors font-poppins"
+        >
+          Back to Gallery
+        </button>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen" style={{ 
-      background: 'linear-gradient(135deg, #ffd6e0 0%, #fef9c3 100%)',
-      padding: '64px 0'
-    }}>
-      <div style={{ paddingLeft: '300px' }}>
-        <div className="max-w-[1200px] mx-auto">
-          <div className="w-full px-4">
-            {/* Back button */}
-            <button 
-              onClick={() => navigate(-1)}
-              className="mb-8 mr-16 cursor-pointer flex items-center justify-center p-2 rounded-full hover:bg-white/20 transition-colors"
-              style={{ 
-                color: '#4a1c40',
-                fontSize: '24px',
-                fontWeight: 'bold'
-              }}
-            >
-              ←
-            </button>
+    <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-4xl mx-auto">
+        <button
+          onClick={() => navigate("/")}
+          className="mb-8 text-2xl font-bold text-pink-600 hover:text-pink-700 transition-colors"
+          style={{ color: "#4a1c40" }}
+        >
+          ←
+        </button>
 
-            {/* Painting Image */}
-            <div 
-              className="w-full max-w-[800px] mx-auto mb-12 cursor-pointer"
-              onClick={() => navigate(`/painting/${paintingId}/zoom`)}
-            >
-              <div className="rounded-2xl overflow-hidden shadow-2xl">
-                <img
-                  src={paintingData.image}
-                  alt={paintingData.title}
-                  className="w-full h-auto object-cover"
-                  onError={(e) => {
-                    e.target.src = '/src/assets/images/image1.png'; // Fallback image
-                  }}
-                />
-              </div>
-            </div>
+        <div className="space-y-8 animate-fade-in">
+          <div 
+            className="bg-white/90 backdrop-blur-sm rounded-lg shadow-lg overflow-hidden w-3/5 mx-auto cursor-pointer"
+            onClick={() => navigate(`/painting/${paintingId}/zoom`)}
+          >
+            <img
+              src={painting.image}
+              alt={painting.title}
+              className="w-full h-auto object-cover"
+            />
+          </div>
 
-            {/* Painting Details */}
-            <div className="max-w-[800px] mx-auto space-y-8">
-              <div className="relative flex items-center gap-2">
-                <h1 className="text-5xl" style={{
-                  fontFamily: "'Calligraffitti', cursive",
-                  background: 'linear-gradient(45deg, #4a1c40, #862d59)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  textShadow: '2px 2px 4px rgba(0,0,0,0.1)',
-                  fontWeight: '700',
-                  letterSpacing: '0.05em',
-                  display: 'inline-block'
-                }}>
-                  {paintingData.title}
-                </h1>
-                <button 
-                  onClick={() => setIsLiked(!isLiked)}
-                  className="transform hover:scale-110 transition-all duration-300 flex items-center justify-center"
-                  style={{
-                    width: '28px',
-                    height: '28px',
-                    marginTop: '8px',
-                    marginLeft: '4px',
-                    marginRight: '32px'
-                  }}
+          <div className="text-center space-y-6">
+            <div className="flex items-center justify-center gap-4">
+              <h1 className="text-4xl md:text-5xl font-lora font-bold text-gray-800 animate-slide-up">
+                {painting.title}
+              </h1>
+              <button
+                onClick={handleLikeClick}
+                className="relative group"
+                aria-label={isLiked ? "Unlike painting" : "Like painting"}
+              >
+                <svg
+                  className={`w-8 h-8 transition-all duration-300 ${
+                    isLiked ? "text-red-500" : "text-white"
+                  }`}
+                  viewBox="0 0 24 24"
+                  fill={isLiked ? "currentColor" : "none"}
+                  stroke={isLiked ? "currentColor" : "#4a1c40"}
+                  strokeWidth="2"
                 >
-                  <svg 
-                    xmlns="http://www.w3.org/2000/svg" 
-                    viewBox="0 0 24 24" 
-                    className="h-7 w-7"
-                    style={{
-                      fill: isLiked ? "#ff4d94" : "none",
-                      stroke: "#ff4d94",
-                      strokeWidth: 1.5
-                    }}
-                  >
-                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-                  </svg>
-                </button>
-              </div>
-              
-              <p className="text-xl leading-relaxed">
-                {paintingData.description}
-              </p>
-
-              <div className="text-2xl font-seasons">
-                Artist: Samagya Sharma
-              </div>
-
-              <div className="text-3xl font-seasons">
-                Price: Rs. {paintingData.price}
-              </div>
+                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                </svg>
+                {showPopup && (
+                  <div className="absolute -top-16 left-1/2 transform -translate-x-1/2 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-lg shadow-lg text-sm font-poppins text-gray-800 animate-rise-up">
+                    <div>Thank you</div>
+                    <div>for liking my painting!</div>
+                  </div>
+                )}
+              </button>
             </div>
+
+            <div className="space-y-2 text-gray-600 font-poppins animate-slide-up" style={{ animationDelay: "0.2s" }}>
+              <p className="text-xl">{painting.artist}</p>
+              <p className="text-lg">{painting.medium}</p>
+              <p className="text-2xl font-semibold text-pink-600">{painting.price}</p>
+            </div>
+
+            <p className="text-lg text-gray-600 font-poppins max-w-2xl mx-auto animate-slide-up" style={{ animationDelay: "0.4s" }}>
+              {painting.description}
+            </p>
           </div>
         </div>
       </div>
