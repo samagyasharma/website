@@ -5,6 +5,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Calligraffitti&display=swap');
 @import url('https://fonts.cdnfonts.com/css/meow-script');
 @import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -43,3 +46,27 @@ body {
   font-family: 'Tenez', serif;
   font-weight: normal;
 }
+
+@keyframes blobMove1 {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(40px) scale(1.08); }
+}
+.animate-blob-move1 { animation: blobMove1 14s ease-in-out infinite; }
+
+@keyframes blobMove2 {
+  0%, 100% { transform: translate(0,0) scale(1); }
+  50% { transform: translate(-40px, 30px) scale(1.1); }
+}
+.animate-blob-move2 { animation: blobMove2 18s ease-in-out infinite; }
+
+@keyframes blobMove3 {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-30px) scale(1.05); }
+}
+.animate-blob-move3 { animation: blobMove3 16s ease-in-out infinite; }
+
+@keyframes blobMove4 {
+  0%, 100% { transform: translateX(0) scale(1); }
+  50% { transform: translateX(40px) scale(1.07); }
+}
+.animate-blob-move4 { animation: blobMove4 20s ease-in-out infinite; }
