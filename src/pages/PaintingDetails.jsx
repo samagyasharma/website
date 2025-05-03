@@ -134,12 +134,20 @@ const PaintingDetails = () => {
   const [isLiked, setIsLiked] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [showToast, setShowToast] = useState(false);
+  const [inBag, setInBag] = useState(false);
 
   useEffect(() => {
     const foundPainting = paintings.find((p) => p.id === parseInt(paintingId));
     setPainting(foundPainting);
     setIsLoading(false);
   }, [paintingId]);
+
+  useEffect(() => {
+    if (painting) {
+      const bag = JSON.parse(localStorage.getItem('bag') || '[]');
+      setInBag(bag.some(item => item.title === painting.title));
+    }
+  }, [painting]);
 
   const handleLikeClick = () => {
     setIsLiked(!isLiked);
@@ -174,7 +182,7 @@ const PaintingDetails = () => {
   }
 
   return (
-    <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen pt-1 pb-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
         <button
           onClick={() => navigate("/")}
@@ -204,22 +212,31 @@ const PaintingDetails = () => {
             </div>
             <div className="flex justify-center mb-4">
               <button
-                className="bg-pink-100 text-pink-800 font-poppins font-semibold px-8 py-3 rounded-full shadow-md transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-pink-200"
+                className={`px-8 py-3 font-poppins transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-pink-200 rounded-full shadow-md ${
+                  inBag
+                    ? 'bg-pink-200 text-pink-900 font-bold border-2 border-pink-600 hover:bg-pink-300 hover:border-pink-700'
+                    : 'bg-pink-100 text-pink-800 font-semibold hover:scale-105 hover:shadow-lg'
+                }`}
                 onClick={() => {
-                  const bag = JSON.parse(localStorage.getItem('bag') || '[]');
-                  if (!bag.some(item => item.title === painting.title)) {
-                    bag.push({
-                      title: painting.title,
-                      image: painting.image,
-                      price: painting.price
-                    });
-                    localStorage.setItem('bag', JSON.stringify(bag));
-                    setShowToast(true);
-                    setTimeout(() => setShowToast(false), 2500);
+                  if (inBag) {
+                    navigate('/your-bag');
+                  } else {
+                    const bag = JSON.parse(localStorage.getItem('bag') || '[]');
+                    if (!bag.some(item => item.title === painting.title)) {
+                      bag.push({
+                        title: painting.title,
+                        image: painting.image,
+                        price: painting.price
+                      });
+                      localStorage.setItem('bag', JSON.stringify(bag));
+                      setShowToast(true);
+                      setTimeout(() => setShowToast(false), 2500);
+                      setInBag(true);
+                    }
                   }
                 }}
               >
-                Add to Bag
+                {inBag ? 'Go to Bag' : 'Add to Bag'}
               </button>
             </div>
             <div className="space-y-2 text-gray-600 font-poppins animate-slide-up" style={{ animationDelay: "0.2s" }}>

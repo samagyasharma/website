@@ -17,15 +17,15 @@ const Contact = () => {
             <div className="space-y-4">
               <div>
                 <h3 className="text-lg font-poppins font-semibold text-gray-800">Email</h3>
-                <p className="text-gray-600 font-poppins">contact@samagyasharma.com</p>
+                <p className="text-gray-600 font-poppins">samagyasharma05@gmail.com</p>
               </div>
               <div>
                 <h3 className="text-lg font-poppins font-semibold text-gray-800">Phone</h3>
-                <p className="text-gray-600 font-poppins">+1 (555) 123-4567</p>
+                <p className="text-gray-600 font-poppins">+91 9667965550</p>
               </div>
               <div>
                 <h3 className="text-lg font-poppins font-semibold text-gray-800">Location</h3>
-                <p className="text-gray-600 font-poppins">New York, NY</p>
+                <p className="text-gray-600 font-poppins">Faridabad, Haryana</p>
               </div>
             </div>
           </div>
@@ -35,14 +35,6 @@ const Contact = () => {
             <div className="space-y-4">
               <div className="flex items-center space-x-4">
                 <span className="text-gray-600 font-poppins">Instagram:</span>
-                <a href="#" className="text-pink-600 hover:text-pink-700 font-poppins">@samagyasharma</a>
-              </div>
-              <div className="flex items-center space-x-4">
-                <span className="text-gray-600 font-poppins">Facebook:</span>
-                <a href="#" className="text-pink-600 hover:text-pink-700 font-poppins">Samagya Sharma Art</a>
-              </div>
-              <div className="flex items-center space-x-4">
-                <span className="text-gray-600 font-poppins">Twitter:</span>
                 <a href="#" className="text-pink-600 hover:text-pink-700 font-poppins">@samagyasharma</a>
               </div>
             </div>
