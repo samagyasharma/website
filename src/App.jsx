@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 import Home from "./pages/Home";
 import YourBag from "./pages/YourBag";
 import AboutMe from "./pages/AboutMe";
@@ -27,6 +28,7 @@ const App = () => {
             </Routes>
           </main>
         </div>
+        <Toaster position="top-center" />
       </div>
     </Router>
   );
