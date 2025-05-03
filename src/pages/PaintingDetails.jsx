@@ -133,6 +133,7 @@ const PaintingDetails = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isLiked, setIsLiked] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
+  const [showToast, setShowToast] = useState(false);
 
   useEffect(() => {
     const foundPainting = paintings.find((p) => p.id === parseInt(paintingId));
@@ -200,33 +201,28 @@ const PaintingDetails = () => {
               <h1 className="text-4xl md:text-5xl font-lora font-bold text-gray-800 animate-slide-up">
                 {painting.title}
               </h1>
+            </div>
+            <div className="flex justify-center mb-4">
               <button
-                onClick={handleLikeClick}
-                className="relative group"
-                aria-label={isLiked ? "Unlike painting" : "Like painting"}
+                className="bg-pink-100 text-pink-800 font-poppins font-semibold px-8 py-3 rounded-full shadow-md transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-pink-200"
+                onClick={() => {
+                  const bag = JSON.parse(localStorage.getItem('bag') || '[]');
+                  if (!bag.some(item => item.title === painting.title)) {
+                    bag.push({
+                      title: painting.title,
+                      image: painting.image,
+                      price: painting.price
+                    });
+                    localStorage.setItem('bag', JSON.stringify(bag));
+                    setShowToast(true);
+                    setTimeout(() => setShowToast(false), 2500);
+                  }
+                }}
               >
-                <svg
-                  className={`w-8 h-8 transition-all duration-300 ${
-                    isLiked ? "text-red-500" : "text-white"
-                  }`}
-                  viewBox="0 0 24 24"
-                  fill={isLiked ? "currentColor" : "none"}
-                  stroke={isLiked ? "currentColor" : "#4a1c40"}
-                  strokeWidth="2"
-                >
-                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-                </svg>
-                {showPopup && (
-                  <div className="absolute -top-16 left-1/2 transform -translate-x-1/2 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-lg shadow-lg text-sm font-poppins text-gray-800 animate-rise-up">
-                    <div>Thank you</div>
-                    <div>for liking my painting!</div>
-                  </div>
-                )}
+                Add to Bag
               </button>
             </div>
-
             <div className="space-y-2 text-gray-600 font-poppins animate-slide-up" style={{ animationDelay: "0.2s" }}>
-              <p className="text-xl">{painting.artist}</p>
               <p className="text-lg">{painting.medium}</p>
               <p className="text-2xl font-semibold text-pink-600">{painting.price}</p>
             </div>
@@ -236,6 +232,11 @@ const PaintingDetails = () => {
             </p>
           </div>
         </div>
+        {showToast && (
+          <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 bg-pink-100 text-pink-900 px-6 py-3 rounded-xl shadow-lg font-poppins text-lg z-50 animate-fade-in-out">
+            Your Painting is added to Bag! Go to Bag to confirm your order !
+          </div>
+        )}
       </div>
     </div>
   );

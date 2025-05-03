@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
 
   return (
     <nav className="bg-white/80 backdrop-blur-sm shadow-md">
@@ -19,19 +20,25 @@ const Navbar = () => {
             <div className="ml-10 flex items-center space-x-8">
               <Link
                 to="/"
-                className="text-gray-600 hover:text-pink-600 px-3 py-2 rounded-md text-sm font-poppins transition-colors"
+                className={`text-gray-600 hover:text-pink-600 px-3 py-2 rounded-md text-sm font-poppins transition-colors ${location.pathname === "/" ? "bg-pink-100 text-pink-700" : ""}`}
               >
                 Gallery
               </Link>
               <Link
+                to="/your-bag"
+                className={`text-gray-600 hover:text-pink-600 px-3 py-2 rounded-md text-sm font-poppins transition-colors ${location.pathname === "/your-bag" ? "bg-pink-100 text-pink-700" : ""}`}
+              >
+                Your Bag
+              </Link>
+              <Link
                 to="/about"
-                className="text-gray-600 hover:text-pink-600 px-3 py-2 rounded-md text-sm font-poppins transition-colors"
+                className={`text-gray-600 hover:text-pink-600 px-3 py-2 rounded-md text-sm font-poppins transition-colors ${location.pathname === "/about" ? "bg-pink-100 text-pink-700" : ""}`}
               >
                 About
               </Link>
               <Link
                 to="/contact"
-                className="text-gray-600 hover:text-pink-600 px-3 py-2 rounded-md text-sm font-poppins transition-colors"
+                className={`text-gray-600 hover:text-pink-600 px-3 py-2 rounded-md text-sm font-poppins transition-colors ${location.pathname === "/contact" ? "bg-pink-100 text-pink-700" : ""}`}
               >
                 Contact
               </Link>
@@ -87,21 +94,28 @@ const Navbar = () => {
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             <Link
               to="/"
-              className="block px-3 py-2 rounded-md text-base font-poppins text-gray-600 hover:text-pink-600 hover:bg-gray-50"
+              className={`block px-3 py-2 rounded-md text-base font-poppins text-gray-600 hover:text-pink-600 hover:bg-gray-50 ${location.pathname === "/" ? "bg-pink-100 text-pink-700" : ""}`}
               onClick={() => setIsOpen(false)}
             >
               Gallery
             </Link>
             <Link
+              to="/your-bag"
+              className={`block px-3 py-2 rounded-md text-base font-poppins text-gray-600 hover:text-pink-600 hover:bg-gray-50 ${location.pathname === "/your-bag" ? "bg-pink-100 text-pink-700" : ""}`}
+              onClick={() => setIsOpen(false)}
+            >
+              Your Bag
+            </Link>
+            <Link
               to="/about"
-              className="block px-3 py-2 rounded-md text-base font-poppins text-gray-600 hover:text-pink-600 hover:bg-gray-50"
+              className={`block px-3 py-2 rounded-md text-base font-poppins text-gray-600 hover:text-pink-600 hover:bg-gray-50 ${location.pathname === "/about" ? "bg-pink-100 text-pink-700" : ""}`}
               onClick={() => setIsOpen(false)}
             >
               About
             </Link>
             <Link
               to="/contact"
-              className="block px-3 py-2 rounded-md text-base font-poppins text-gray-600 hover:text-pink-600 hover:bg-gray-50"
+              className={`block px-3 py-2 rounded-md text-base font-poppins text-gray-600 hover:text-pink-600 hover:bg-gray-50 ${location.pathname === "/contact" ? "bg-pink-100 text-pink-700" : ""}`}
               onClick={() => setIsOpen(false)}
             >
               Contact
