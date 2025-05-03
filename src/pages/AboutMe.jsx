@@ -59,7 +59,7 @@ const AboutMe = () => {
             <p className="text-gray-600 font-poppins">
               Available for custom artwork and private commissions, creating unique pieces for
               collectors.
-            </p>
+      </p>
           </div>
         </div>
       </div>

@@ -28,8 +28,7 @@ const PaintingDetail = () => {
         alt={painting.name}
         className="w-full rounded-xl object-contain mb-4 hover:scale-105 transition-transform duration-500"
       />
-      <h2 className="text-2xl font-bold text-purple-800">{painting.name}</h2>
-      <p className="text-gray-700">By {painting.artist}</p>
+      <div className="font-poppins text-base text-gray-800 font-semibold">{painting.name}</div>
       <p className="text-gray-700">{painting.medium}</p>
       <p className="font-semibold text-purple-600 mt-1">₹{painting.price}</p>
       <CommentBox paintingId={painting.name} />

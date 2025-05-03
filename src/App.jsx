@@ -11,10 +11,10 @@ import Navbar from "./components/Navbar";
 const App = () => {
   return (
     <Router>
-      <div className="min-h-screen bg-gradient-pink-lavender">
-        <div className="backdrop-blur-sm">
+      <div className="min-h-screen w-full">
+        <div className="backdrop-blur-sm w-full">
           <Navbar />
-          <main className="container mx-auto px-4 py-8">
+          <main className="w-full px-0 py-0">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/your-bag" element={<YourBag />} />
