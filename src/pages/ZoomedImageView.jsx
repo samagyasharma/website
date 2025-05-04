@@ -69,22 +69,10 @@ const paintings = [
 const ZoomedImageView = () => {
   const { paintingId } = useParams();
   const navigate = useNavigate();
-  const [isZoomed, setIsZoomed] = useState(false);
-  const [lastClickTime, setLastClickTime] = useState(0);
+  const [zoomLevel, setZoomLevel] = useState(1);
   const [showInstructions, setShowInstructions] = useState(true);
 
   const painting = paintings.find((p) => p.id === parseInt(paintingId));
-
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === "Escape") {
-        setIsZoomed(false);
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -94,16 +82,12 @@ const ZoomedImageView = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  const handleContextMenu = (e) => {
-    e.preventDefault();
-    const currentTime = new Date().getTime();
-    const timeDiff = currentTime - lastClickTime;
-
-    if (timeDiff < 300) { // Double right-click within 300ms
-      setIsZoomed(!isZoomed);
-    }
-
-    setLastClickTime(currentTime);
+  const handleZoom = () => {
+    setZoomLevel((prev) => {
+      if (prev === 1) return 2;
+      if (prev === 2) return 3;
+      return 1;
+    });
   };
 
   if (!painting) {
@@ -123,7 +107,7 @@ const ZoomedImageView = () => {
   }
 
   return (
-    <div className="fixed inset-0 z-50 bg-gradient-pink-lavender/90 backdrop-blur-sm animate-fade-in overflow-auto">
+    <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm animate-fade-in">
       <div className="absolute top-4 right-4 z-50">
         <button
           onClick={() => navigate(-1)}
@@ -133,23 +117,24 @@ const ZoomedImageView = () => {
         </button>
       </div>
 
-      <div className="min-h-screen w-full flex items-center justify-center p-4 overflow-auto">
-        <div
-          className={`relative transition-transform duration-300 ${
-            isZoomed ? "scale-150" : "scale-100"
-          }`}
-          onContextMenu={handleContextMenu}
-          style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-        >
+      <div 
+        className="min-h-screen w-full flex items-center justify-center p-4 cursor-pointer"
+        onClick={handleZoom}
+      >
+        <div className="relative">
           <img
             src={painting.image}
             alt={painting.title}
-            className="max-h-[80vh] max-w-[90vw] w-auto h-auto object-contain rounded-lg shadow-2xl"
-            style={{ display: 'block', margin: 'auto' }}
+            className={`transition-transform duration-300 ${
+              zoomLevel === 1 ? "scale-100" : 
+              zoomLevel === 2 ? "scale-150" : 
+              "scale-200"
+            }`}
+            style={{ maxHeight: "90vh", maxWidth: "90vw" }}
           />
           {showInstructions && (
             <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-lg shadow-lg text-sm font-poppins text-gray-800 animate-fade-in-out">
-              Double right-click to zoom
+              Click to zoom (3 levels)
             </div>
           )}
         </div>
