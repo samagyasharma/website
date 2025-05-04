@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 const OrderConfirmation = () => {
+  const navigate = useNavigate();
   const [total, setTotal] = useState(0);
   const [confirmedPaintings, setConfirmedPaintings] = useState([]);
   const [showToast, setShowToast] = useState(false);
@@ -8,6 +11,7 @@ const OrderConfirmation = () => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     // Read confirmed paintings from localStorage
@@ -24,29 +28,45 @@ const OrderConfirmation = () => {
     setTotal(sum);
   }, []);
 
-  const handleConfirmOrder = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!name.trim()) {
-      setToastMsg("Please fill Full Name");
-      setShowToast(true);
-      setTimeout(() => setShowToast(false), 2500);
-      return;
+    setIsSubmitting(true);
+
+    try {
+      // Get form values
+      const name = document.getElementById("name").value;
+      const phone = document.getElementById("phone").value;
+      const address = document.getElementById("address").value;
+
+      // Create the paragraph
+      const paragraph = `Name: ${name}\nPhone: ${phone}\nAddress: ${address}`;
+
+      // Submit to Google Form
+      const response = await fetch(
+        "https://docs.google.com/forms/d/e/1FAIpQLSdtzQpJHepevl6ebR0uXou9UbA4FCA092gt-HyIBXo_bTKbSg/formResponse",
+        {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: `entry.644748385=${encodeURIComponent(paragraph)}`,
+        }
+      );
+
+      // Show success message
+      toast.success("Order confirmed successfully!");
+      
+      // Navigate to home page after a short delay
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      toast.error("Failed to confirm order. Please try again.");
+    } finally {
+      setIsSubmitting(false);
     }
-    if (!phone.trim()) {
-      setToastMsg("Please fill Phone Number");
-      setShowToast(true);
-      setTimeout(() => setShowToast(false), 2500);
-      return;
-    }
-    if (!address.trim()) {
-      setToastMsg("Please fill Delivery Address");
-      setShowToast(true);
-      setTimeout(() => setShowToast(false), 2500);
-      return;
-    }
-    setToastMsg("Your order has been received! Thank you!");
-    setShowToast(true);
-    setTimeout(() => setShowToast(false), 2500);
   };
 
   return (
@@ -67,34 +87,55 @@ const OrderConfirmation = () => {
       <p className="text-center text-gray-500 font-poppins text-base md:text-lg leading-relaxed mt-10 max-w-2xl mx-auto px-2">
         The details of your order will be given to the respective artists and you will be contacted on your given phone number and email ID on the availability of the painting and the feasibility of the delivery location. Further delivery charges may be applied.
       </p>
-      <form className="max-w-xl mx-auto mt-10 flex flex-col gap-6 w-full" onSubmit={handleConfirmOrder}>
-        <input
-          type="text"
-          placeholder="Enter your full name"
-          className="border border-gray-300 rounded-lg px-4 py-3 font-poppins text-base focus:outline-none focus:ring-2 focus:ring-pink-200 transition"
-          value={name}
-          onChange={e => setName(e.target.value)}
-        />
-        <input
-          type="tel"
-          placeholder="Enter your phone number"
-          className="border border-gray-300 rounded-lg px-4 py-3 font-poppins text-base focus:outline-none focus:ring-2 focus:ring-pink-200 transition"
-          value={phone}
-          onChange={e => setPhone(e.target.value)}
-        />
-        <textarea
-          rows={4}
-          placeholder="Enter your delivery address"
-          className="border border-gray-300 rounded-lg px-4 py-3 font-poppins text-base focus:outline-none focus:ring-2 focus:ring-pink-200 transition resize-none"
-          value={address}
-          onChange={e => setAddress(e.target.value)}
-        />
+      <form onSubmit={handleSubmit} className="max-w-xl mx-auto mt-10 flex flex-col gap-6 w-full">
+        <div>
+          <label htmlFor="name" className="block text-gray-700 font-poppins mb-2">
+            Full Name *
+          </label>
+          <input
+            type="text"
+            id="name"
+            required
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+            value={name}
+            onChange={e => setName(e.target.value)}
+          />
+        </div>
+        <div>
+          <label htmlFor="phone" className="block text-gray-700 font-poppins mb-2">
+            Phone Number *
+          </label>
+          <input
+            type="tel"
+            id="phone"
+            required
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+            value={phone}
+            onChange={e => setPhone(e.target.value)}
+          />
+        </div>
+        <div>
+          <label htmlFor="address" className="block text-gray-700 font-poppins mb-2">
+            Delivery Address *
+          </label>
+          <textarea
+            id="address"
+            required
+            rows="4"
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+            value={address}
+            onChange={e => setAddress(e.target.value)}
+          ></textarea>
+        </div>
         <div className="flex justify-center mt-4">
           <button
             type="submit"
-            className="bg-pink-200 text-pink-900 font-poppins font-bold text-xl px-10 py-4 rounded-full shadow-lg transition-all duration-300 hover:scale-105 hover:bg-pink-300 focus:outline-none focus:ring-2 focus:ring-pink-200"
+            disabled={isSubmitting}
+            className={`w-full bg-pink-600 text-white py-3 px-6 rounded-lg hover:bg-pink-700 transition-colors font-poppins font-semibold ${
+              isSubmitting ? "opacity-50 cursor-not-allowed" : ""
+            }`}
           >
-            Confirm Order
+            {isSubmitting ? "Confirming..." : "Confirm Order"}
           </button>
         </div>
       </form>
