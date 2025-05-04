@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { toast } from "react-hot-toast";
 import { GOOGLE_CLIENT_ID, API_BASE_URL } from "../config";
+import { Link } from "react-router-dom";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -121,108 +122,63 @@ const Contact = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto space-y-12">
-      <div className="text-center space-y-4">
-        <h1 className="text-4xl md:text-5xl font-lora font-bold text-gray-800">Contact Me</h1>
-        <p className="text-xl text-gray-600 font-poppins">
-          Get in touch for inquiries about artwork, commissions, or collaborations
-        </p>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-        <div className="space-y-8">
-          <div className="bg-white/90 backdrop-blur-sm p-8 rounded-lg shadow-md">
-            <h2 className="text-2xl font-lora font-bold text-gray-800 mb-6">Contact Information</h2>
-            <div className="space-y-4">
-              <div>
-                <h3 className="text-lg font-poppins font-semibold text-gray-800">Email</h3>
-                <p className="text-gray-600 font-poppins"></p>
-              </div>
-              <div>
-                <h3 className="text-lg font-poppins font-semibold text-gray-800">Phone</h3>
-                <p className="text-gray-600 font-poppins">+91 9667965550</p>
-              </div>
-              <div>
-                <h3 className="text-lg font-poppins font-semibold text-gray-800">Location</h3>
-                <p className="text-gray-600 font-poppins">Faridabad, Haryana</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-white/90 backdrop-blur-sm p-8 rounded-lg shadow-md">
-            <h2 className="text-2xl font-lora font-bold text-gray-800 mb-6">Social Media</h2>
-            <div className="space-y-4">
-              <div className="flex items-center space-x-4">
-                <span className="text-gray-600 font-poppins">Instagram:</span>
-                <a href="#" className="text-pink-600 hover:text-pink-700 font-poppins">@samagyasharma</a>
-              </div>
-            </div>
-          </div>
+    <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-4xl mx-auto">
+        <div className="text-center mb-12">
+          <h1 className="text-4xl md:text-5xl font-lora font-bold text-gray-800 mb-4">
+            Contact Me
+          </h1>
+          <p className="text-xl text-gray-600 font-poppins max-w-2xl mx-auto">
+            Let's connect and create something beautiful together!
+          </p>
         </div>
 
-        <div className="bg-white/90 backdrop-blur-sm p-8 rounded-lg shadow-md">
-          <h2 className="text-2xl font-lora font-bold text-gray-800 mb-6">Send a Message</h2>
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div>
-              <label htmlFor="name" className="block text-gray-700 font-poppins mb-2">Name *</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleInputChange}
-                disabled={isSubmitting}
-                className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent ${
-                  errors.name ? "border-red-500" : "border-gray-300"
-                } ${isSubmitting ? "opacity-50 cursor-not-allowed" : ""}`}
-              />
-              {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
+        <div className="space-y-12">
+          <section className="bg-white/90 backdrop-blur-sm rounded-lg shadow-lg p-8 animate-fade-in">
+            <h2 className="text-2xl font-lora font-bold text-gray-800 mb-4">
+              Get in Touch
+            </h2>
+            <div className="space-y-4 text-gray-600 font-poppins">
+              <p>
+                <span className="font-semibold">Email:</span>{" "}
+                <a
+                  href="mailto:samagyasharma05@gmail.com"
+                  className="text-pink-600 hover:text-pink-700 transition-colors"
+                >
+                  samagyasharma05@gmail.com
+                </a>
+              </p>
+              <p>
+                <span className="font-semibold">Instagram:</span>{" "}
+                <a
+                  href="https://www.instagram.com/samagya.sharma"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-pink-600 hover:text-pink-700 transition-colors"
+                >
+                  @samagya.sharma
+                </a>
+              </p>
             </div>
-            <div>
-              <label htmlFor="email" className="block text-gray-700 font-poppins mb-2">Email *</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleInputChange}
-                disabled={isSubmitting}
-                className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent ${
-                  errors.email ? "border-red-500" : "border-gray-300"
-                } ${isSubmitting ? "opacity-50 cursor-not-allowed" : ""}`}
-              />
-              {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
-            </div>
-            <div>
-              <label htmlFor="message" className="block text-gray-700 font-poppins mb-2">Message *</label>
-              <textarea
-                id="message"
-                name="message"
-                rows="4"
-                value={formData.message}
-                onChange={handleInputChange}
-                disabled={isSubmitting}
-                className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent ${
-                  errors.message ? "border-red-500" : "border-gray-300"
-                } ${isSubmitting ? "opacity-50 cursor-not-allowed" : ""}`}
-              ></textarea>
-              {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
-            </div>
-            {isAuthenticated && (
-              <div className="text-sm text-gray-600">
-                Signed in as: {userEmail}
-              </div>
-            )}
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className={`w-full bg-pink-600 text-white py-3 px-6 rounded-lg hover:bg-pink-700 transition-colors font-poppins font-semibold ${
-                isSubmitting ? "opacity-50 cursor-not-allowed" : ""
-              }`}
+          </section>
+
+          <section className="bg-white/90 backdrop-blur-sm rounded-lg shadow-lg p-8 animate-fade-in" style={{ animationDelay: "0.2s" }}>
+            <h2 className="text-2xl font-lora font-bold text-gray-800 mb-4">
+              Commission Inquiries
+            </h2>
+            <p className="text-gray-600 font-poppins leading-relaxed">
+              Interested in a custom piece? Feel free to reach out through email or Instagram. I'm always excited to discuss new projects and bring your artistic vision to life.
+            </p>
+          </section>
+
+          <div className="text-center">
+            <Link
+              to="/"
+              className="inline-block px-6 py-3 bg-pink-600 text-white rounded-lg hover:bg-pink-700 transition-colors font-poppins"
             >
-              {isSubmitting ? "Sending..." : isAuthenticated ? "Send Message" : "Sign in with Google to Send Message"}
-            </button>
-          </form>
+              Back to Gallery
+            </Link>
+          </div>
         </div>
       </div>
     </div>
