@@ -54,6 +54,17 @@ const OrderConfirmation = () => {
         }
       );
 
+      // Clear confirmed items from bag
+      const bag = JSON.parse(localStorage.getItem("bag") || "[]");
+      const confirmed = JSON.parse(localStorage.getItem("confirmed") || "[]");
+      
+      // Filter out confirmed items
+      const updatedBag = bag.filter(painting => !confirmed.includes(painting.title));
+      
+      // Update localStorage
+      localStorage.setItem("bag", JSON.stringify(updatedBag));
+      localStorage.removeItem("confirmed");
+
       // Show success message
       toast.success("Order confirmed successfully!");
       
@@ -85,7 +96,7 @@ const OrderConfirmation = () => {
         ))}
       </div>
       <p className="text-center text-gray-500 font-poppins text-base md:text-lg leading-relaxed mt-10 max-w-2xl mx-auto px-2">
-        The details of your order will be given to the respective artists and you will be contacted on your given phone number and email ID on the availability of the painting and the feasibility of the delivery location. Further delivery charges may be applied.
+        You will be contacted on your given phone number and email ID on the availability of the painting and the feasibility of the delivery location. Further delivery charges may be applied.
       </p>
       <form onSubmit={handleSubmit} className="max-w-xl mx-auto mt-10 flex flex-col gap-6 w-full">
         <div>
