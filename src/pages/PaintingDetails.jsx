@@ -1,130 +1,29 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import eyesDontLie from "../assets/images/eyes-dont-lie.jpg";
+import lakeside from "../assets/images/Lakeside.jpg";
+import bloomingFlowers from "../assets/images/blooming-flowers.jpg";
+import mysticSky from "../assets/images/mystic-sky.jpg";
+import holi from "../assets/images/Holi.jpg";
+import beagle from "../assets/images/Beagle.jpg";
+import sunsetz from "../assets/images/Sunsetz.jpg";
+import flowers from "../assets/images/Flowers.jpg";
+import marilynMonroe from "../assets/images/marilyn-monroe.jpg";
+import intoYourEyes from "../assets/images/into-your-eyes.jpg";
+import paintingsData from "../data/paintings.json";
 
-// Import images
-import eyesDontLie from "../assets/images/Eyes Don't Lie.jpeg";
-import lakeside from "../assets/images/Lakeside.jpeg";
-import bloomingFlowers from "../assets/images/Blooming Flowers.jpeg";
-import mysticSky from "../assets/images/Mystic Sky.jpeg";
-import image1 from "../assets/images/image1.png";
-import image2 from "../assets/images/image2.png";
-import image3 from "../assets/images/image3.png";
-import image4 from "../assets/images/image4.png";
-import image5 from "../assets/images/image5.png";
-import image6 from "../assets/images/image6.png";
-import image7 from "../assets/images/image7.png";
-import hero from "../assets/images/hero.jpg";
-
-const paintings = [
-  {
-    id: 1,
-    title: "Eyes Don't Lie",
-    artist: "Samagya Sharma",
-    medium: "WaterColor",
-    price: "Rs. 3000",
-    image: eyesDontLie,
-    description: "A captivating portrait that reveals the depth of human emotion through expressive eyes. The delicate watercolor technique brings out the subtle nuances of the subject's gaze.",
-  },
-  {
-    id: 2,
-    title: "Lakeside",
-    artist: "Samagya Sharma",
-    medium: "WaterColor",
-    price: "Rs. 3000",
-    image: lakeside,
-    description: "A serene lakeside scene capturing the tranquility of nature. The gentle ripples and soft reflections create a peaceful atmosphere.",
-  },
-  {
-    id: 3,
-    title: "Blooming Flowers",
-    artist: "Samagya Sharma",
-    medium: "WaterColor",
-    price: "Rs. 3000",
-    image: bloomingFlowers,
-    description: "A vibrant composition of flowers in full bloom, showcasing the delicate beauty of nature through soft watercolor strokes.",
-  },
-  {
-    id: 4,
-    title: "Mystic Sky",
-    artist: "Samagya Sharma",
-    medium: "WaterColor",
-    price: "Rs. 3000",
-    image: mysticSky,
-    description: "An ethereal sky painting that captures the magical moments of twilight with its soft hues and dreamy atmosphere.",
-  },
-  {
-    id: 5,
-    title: "Serene Landscape",
-    artist: "Samagya Sharma",
-    medium: "WaterColor",
-    price: "Rs. 3000",
-    image: image1,
-    description: "A peaceful landscape that invites viewers to immerse themselves in the beauty of nature's tranquility.",
-  },
-  {
-    id: 6,
-    title: "Mountain View",
-    artist: "Samagya Sharma",
-    medium: "WaterColor",
-    price: "Rs. 3000",
-    image: image2,
-    description: "Majestic mountains captured in soft watercolor, showcasing the grandeur of nature's peaks.",
-  },
-  {
-    id: 7,
-    title: "Ocean Breeze",
-    artist: "Samagya Sharma",
-    medium: "WaterColor",
-    price: "Rs. 3000",
-    image: image3,
-    description: "The gentle movement of ocean waves brought to life through fluid watercolor techniques.",
-  },
-  {
-    id: 8,
-    title: "Forest Path",
-    artist: "Samagya Sharma",
-    medium: "WaterColor",
-    price: "Rs. 3000",
-    image: image4,
-    description: "A winding path through a mystical forest, inviting viewers to explore nature's hidden beauty.",
-  },
-  {
-    id: 9,
-    title: "City Lights",
-    artist: "Samagya Sharma",
-    medium: "WaterColor",
-    price: "Rs. 3000",
-    image: image5,
-    description: "Urban landscapes come alive with the glow of city lights, captured in delicate watercolor washes.",
-  },
-  {
-    id: 10,
-    title: "Sunset Horizon",
-    artist: "Samagya Sharma",
-    medium: "WaterColor",
-    price: "Rs. 3000",
-    image: image6,
-    description: "The magical colors of sunset painted with soft watercolor techniques, creating a dreamy atmosphere.",
-  },
-  {
-    id: 11,
-    title: "Morning Mist",
-    artist: "Samagya Sharma",
-    medium: "WaterColor",
-    price: "Rs. 3000",
-    image: image7,
-    description: "The ethereal beauty of morning mist captured in delicate watercolor washes.",
-  },
-  {
-    id: 12,
-    title: "Heroic View",
-    artist: "Samagya Sharma",
-    medium: "WaterColor",
-    price: "Rs. 3000",
-    image: hero,
-    description: "A grand landscape that captures the heroic scale of nature's beauty through watercolor techniques.",
-  },
-];
+const imageMap = {
+  "Eyes Don't Lie": eyesDontLie,
+  "Lakeside": lakeside,
+  "Blooming Flowers": bloomingFlowers,
+  "Mystic Sky": mysticSky,
+  "Holi": holi,
+  "Beagle": beagle,
+  "Sunsetz": sunsetz,
+  "Flowers": flowers,
+  "Marilyn Monroe": marilynMonroe,
+  "Into Your Eyes": intoYourEyes
+};
 
 const PaintingDetails = () => {
   const { paintingId } = useParams();
@@ -137,15 +36,21 @@ const PaintingDetails = () => {
   const [inBag, setInBag] = useState(false);
 
   useEffect(() => {
-    const foundPainting = paintings.find((p) => p.id === parseInt(paintingId));
-    setPainting(foundPainting);
+    const foundPainting = paintingsData.paintings.find((p) => p.id === parseInt(paintingId));
+    if (foundPainting) {
+      setPainting({
+        ...foundPainting,
+        image: imageMap[foundPainting.painting_name],
+        price: `Rs. ${foundPainting.price}`
+      });
+    }
     setIsLoading(false);
   }, [paintingId]);
 
   useEffect(() => {
     if (painting) {
       const bag = JSON.parse(localStorage.getItem('bag') || '[]');
-      setInBag(bag.some(item => item.title === painting.title));
+      setInBag(bag.some(item => item.title === painting.painting_name));
     }
   }, [painting]);
 
@@ -199,7 +104,7 @@ const PaintingDetails = () => {
           >
             <img
               src={painting.image}
-              alt={painting.title}
+              alt={painting.painting_name}
               className="w-full h-auto object-cover"
             />
           </div>
@@ -207,7 +112,7 @@ const PaintingDetails = () => {
           <div className="text-center space-y-6">
             <div className="flex items-center justify-center gap-4">
               <h1 className="text-4xl md:text-5xl font-lora font-bold text-gray-800 animate-slide-up">
-                {painting.title}
+                {painting.painting_name}
               </h1>
             </div>
             <div className="flex justify-center mb-4">
@@ -222,9 +127,9 @@ const PaintingDetails = () => {
                     navigate('/your-bag');
                   } else {
                     const bag = JSON.parse(localStorage.getItem('bag') || '[]');
-                    if (!bag.some(item => item.title === painting.title)) {
+                    if (!bag.some(item => item.title === painting.painting_name)) {
                       bag.push({
-                        title: painting.title,
+                        title: painting.painting_name,
                         image: painting.image,
                         price: painting.price
                       });

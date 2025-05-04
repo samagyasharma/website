@@ -1,0 +1,84 @@
+{
+  "paintings": [
+    {
+      "id": 1,
+      "painting_name": "Eyes Don't Lie",
+      "price": 3000,
+      "description": "A captivating portrait that reveals the depth of human emotion through expressive eyes. The delicate watercolor technique brings out the subtle nuances of the subject's gaze.",
+      "artist": "Samagya Sharma",
+      "medium": "WaterColor"
+    },
+    {
+      "id": 2,
+      "painting_name": "Lakeside",
+      "price": 3000,
+      "description": "A serene lakeside scene capturing the tranquility of nature. The gentle ripples and soft reflections create a peaceful atmosphere.",
+      "artist": "Samagya Sharma",
+      "medium": "WaterColor"
+    },
+    {
+      "id": 3,
+      "painting_name": "Blooming Flowers",
+      "price": 3000,
+      "description": "A vibrant composition of flowers in full bloom, showcasing the delicate beauty of nature through soft watercolor strokes.",
+      "artist": "Samagya Sharma",
+      "medium": "WaterColor"
+    },
+    {
+      "id": 4,
+      "painting_name": "Mystic Sky",
+      "price": 3000,
+      "description": "An ethereal sky painting that captures the magical moments of twilight with its soft hues and dreamy atmosphere.",
+      "artist": "Samagya Sharma",
+      "medium": "WaterColor"
+    },
+    {
+      "id": 5,
+      "painting_name": "Holi",
+      "price": 3000,
+      "description": "A vibrant celebration of colors capturing the essence of the Holi festival through dynamic watercolor techniques.",
+      "artist": "Samagya Sharma",
+      "medium": "WaterColor"
+    },
+    {
+      "id": 6,
+      "painting_name": "Beagle",
+      "price": 3000,
+      "description": "A charming portrait of a beagle, capturing the playful and loyal nature of the breed through delicate watercolor strokes.",
+      "artist": "Samagya Sharma",
+      "medium": "WaterColor"
+    },
+    {
+      "id": 7,
+      "painting_name": "Sunsetz",
+      "price": 3000,
+      "description": "A breathtaking sunset scene painted with warm, vibrant colors that capture the magical transition from day to night.",
+      "artist": "Samagya Sharma",
+      "medium": "WaterColor"
+    },
+    {
+      "id": 8,
+      "painting_name": "Flowers",
+      "price": 3000,
+      "description": "A delicate arrangement of flowers captured in soft watercolor, showcasing the beauty of nature's palette.",
+      "artist": "Samagya Sharma",
+      "medium": "WaterColor"
+    },
+    {
+      "id": 9,
+      "painting_name": "Marilyn Monroe",
+      "price": 3000,
+      "description": "A tribute to the iconic Marilyn Monroe, capturing her timeless beauty and charisma through watercolor techniques.",
+      "artist": "Samagya Sharma",
+      "medium": "WaterColor"
+    },
+    {
+      "id": 10,
+      "painting_name": "Into Your Eyes",
+      "price": 3000,
+      "description": "A mesmerizing portrait that draws you into the subject's soul through their expressive eyes, painted with delicate watercolor strokes.",
+      "artist": "Samagya Sharma",
+      "medium": "WaterColor"
+    }
+  ]
+} 

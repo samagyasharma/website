@@ -2,18 +2,16 @@ import React, { useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 // Import images
-import eyesDontLie from "../assets/images/Eyes Don't Lie.jpeg";
-import lakeside from "../assets/images/Lakeside.jpeg";
-import bloomingFlowers from "../assets/images/Blooming Flowers.jpeg";
-import mysticSky from "../assets/images/Mystic Sky.jpeg";
-import image1 from "../assets/images/image1.png";
-import image2 from "../assets/images/image2.png";
-import image3 from "../assets/images/image3.png";
-import image4 from "../assets/images/image4.png";
-import image5 from "../assets/images/image5.png";
-import image6 from "../assets/images/image6.png";
-import image7 from "../assets/images/image7.png";
-import hero from "../assets/images/hero.jpg";
+import eyesDontLie from "../assets/images/eyes-dont-lie.jpg";
+import lakeside from "../assets/images/Lakeside.jpg";
+import bloomingFlowers from "../assets/images/blooming-flowers.jpg";
+import mysticSky from "../assets/images/mystic-sky.jpg";
+import holi from "../assets/images/Holi.jpg";
+import beagle from "../assets/images/Beagle.jpg";
+import sunsetz from "../assets/images/Sunsetz.jpg";
+import flowers from "../assets/images/Flowers.jpg";
+import marilynMonroe from "../assets/images/marilyn-monroe.jpg";
+import intoYourEyes from "../assets/images/into-your-eyes.jpg";
 
 const paintings = [
   {
@@ -50,68 +48,52 @@ const paintings = [
   },
   {
     id: 5,
-    title: "Serene Landscape",
+    title: "Holi",
     artist: "Samagya Sharma",
     medium: "WaterColor",
     price: "Rs. 3000",
-    image: image1,
+    image: holi,
   },
   {
     id: 6,
-    title: "Mountain View",
+    title: "Beagle",
     artist: "Samagya Sharma",
     medium: "WaterColor",
     price: "Rs. 3000",
-    image: image2,
+    image: beagle,
   },
   {
     id: 7,
-    title: "Ocean Breeze",
+    title: "Sunsetz",
     artist: "Samagya Sharma",
     medium: "WaterColor",
     price: "Rs. 3000",
-    image: image3,
+    image: sunsetz,
   },
   {
     id: 8,
-    title: "Forest Path",
+    title: "Flowers",
     artist: "Samagya Sharma",
     medium: "WaterColor",
     price: "Rs. 3000",
-    image: image4,
+    image: flowers,
   },
   {
     id: 9,
-    title: "City Lights",
+    title: "Marilyn Monroe",
     artist: "Samagya Sharma",
     medium: "WaterColor",
     price: "Rs. 3000",
-    image: image5,
+    image: marilynMonroe,
   },
   {
     id: 10,
-    title: "Sunset Horizon",
+    title: "Into Your Eyes",
     artist: "Samagya Sharma",
     medium: "WaterColor",
     price: "Rs. 3000",
-    image: image6,
-  },
-  {
-    id: 11,
-    title: "Morning Mist",
-    artist: "Samagya Sharma",
-    medium: "WaterColor",
-    price: "Rs. 3000",
-    image: image7,
-  },
-  {
-    id: 12,
-    title: "Heroic View",
-    artist: "Samagya Sharma",
-    medium: "WaterColor",
-    price: "Rs. 3000",
-    image: hero,
-  },
+    image: intoYourEyes,
+  }
 ];
 
 const Home = () => {

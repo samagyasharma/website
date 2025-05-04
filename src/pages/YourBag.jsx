@@ -1,31 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import eyesDontLie from "../assets/images/Eyes Don't Lie.jpeg";
-import lakeside from "../assets/images/Lakeside.jpeg";
-import bloomingFlowers from "../assets/images/Blooming Flowers.jpeg";
-import mysticSky from "../assets/images/Mystic Sky.jpeg";
-import image1 from "../assets/images/image1.png";
-import image2 from "../assets/images/image2.png";
-import image3 from "../assets/images/image3.png";
-import image4 from "../assets/images/image4.png";
-import image5 from "../assets/images/image5.png";
-import image6 from "../assets/images/image6.png";
-import image7 from "../assets/images/image7.png";
-import hero from "../assets/images/hero.jpg";
+import eyesDontLie from "../assets/images/eyes-dont-lie.jpg";
+import lakeside from "../assets/images/Lakeside.jpg";
+import bloomingFlowers from "../assets/images/blooming-flowers.jpg";
+import mysticSky from "../assets/images/mystic-sky.jpg";
+import holi from "../assets/images/Holi.jpg";
+import beagle from "../assets/images/Beagle.jpg";
+import sunsetz from "../assets/images/Sunsetz.jpg";
+import flowers from "../assets/images/Flowers.jpg";
+import marilynMonroe from "../assets/images/marilyn-monroe.jpg";
+import intoYourEyes from "../assets/images/into-your-eyes.jpg";
 
 const paintings = [
   { id: 1, title: "Eyes Don't Lie", price: "Rs. 3000", image: eyesDontLie },
   { id: 2, title: "Lakeside", price: "Rs. 3000", image: lakeside },
   { id: 3, title: "Blooming Flowers", price: "Rs. 3000", image: bloomingFlowers },
   { id: 4, title: "Mystic Sky", price: "Rs. 3000", image: mysticSky },
-  { id: 5, title: "Serene Landscape", price: "Rs. 3000", image: image1 },
-  { id: 6, title: "Mountain View", price: "Rs. 3000", image: image2 },
-  { id: 7, title: "Ocean Breeze", price: "Rs. 3000", image: image3 },
-  { id: 8, title: "Forest Path", price: "Rs. 3000", image: image4 },
-  { id: 9, title: "City Lights", price: "Rs. 3000", image: image5 },
-  { id: 10, title: "Sunset Horizon", price: "Rs. 3000", image: image6 },
-  { id: 11, title: "Morning Mist", price: "Rs. 3000", image: image7 },
-  { id: 12, title: "Heroic View", price: "Rs. 3000", image: hero },
+  { id: 5, title: "Holi", price: "Rs. 3000", image: holi },
+  { id: 6, title: "Beagle", price: "Rs. 3000", image: beagle },
+  { id: 7, title: "Sunsetz", price: "Rs. 3000", image: sunsetz },
+  { id: 8, title: "Flowers", price: "Rs. 3000", image: flowers },
+  { id: 9, title: "Marilyn Monroe", price: "Rs. 3000", image: marilynMonroe },
+  { id: 10, title: "Into Your Eyes", price: "Rs. 3000", image: intoYourEyes }
 ];
 
 const YourBag = () => {
