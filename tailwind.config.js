@@ -9,6 +9,7 @@ export default {
       fontFamily: {
         lora: ['Lora', 'serif'],
         poppins: ['Poppins', 'sans-serif'],
+        'homemade-apple': ['Homemade Apple', 'cursive'],
       },
       colors: {
         pink: {

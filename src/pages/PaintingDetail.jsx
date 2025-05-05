@@ -28,7 +28,17 @@ const PaintingDetail = () => {
         alt={painting.name}
         className="w-full rounded-xl object-contain mb-4 hover:scale-105 transition-transform duration-500"
       />
-      <div className="font-poppins text-base text-gray-800 font-semibold text-center mb-2">{painting.name}</div>
+      <div className="bg-white/90 backdrop-blur-sm rounded-lg shadow-lg p-8 animate-fade-in">
+        <h1
+          className="text-3xl font-normal"
+          style={{
+            fontFamily: "'Homemade Apple', cursive",
+            fontWeight: 400
+          }}
+        >
+          {painting.name}
+        </h1>
+      </div>
       <div className="flex justify-center mb-4">
         <button
           className="bg-pink-100 text-pink-800 font-poppins font-semibold px-8 py-3 rounded-full shadow-md transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-pink-200"

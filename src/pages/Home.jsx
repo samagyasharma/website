@@ -139,9 +139,13 @@ const Home = () => {
 
       {/* Content Container */}
       <div className="relative w-full py-12 px-4 sm:px-8 lg:px-24">
-        <h1 className="text-5xl md:text-6xl font-water-brush font-normal text-center mb-2 text-white drop-shadow-lg">Samagya Sharma</h1>
-        <h2 className="text-5xl md:text-6xl font-water-brush font-normal text-center mb-2 text-white drop-shadow-lg">Art</h2>
-        <p className="text-xl text-white font-poppins max-w-2xl mx-auto text-center mb-8 drop-shadow-lg">
+        <h1 className="text-5xl md:text-6xl font-water-brush font-normal text-center mb-2 text-white drop-shadow-lg" style={{ textShadow: '2px 2px 6px rgba(60, 90, 130, 0.5), 0 0 10px rgba(173, 216, 230, 0.8), 0 0 20px rgba(173, 216, 230, 0.7), 0 0 30px rgba(173, 216, 230, 0.6)' }}>Samagya Sharma</h1>
+        <h2 className="text-5xl md:text-6xl font-water-brush font-normal text-center mb-2 text-white drop-shadow-lg" style={{ textShadow: '2px 2px 6px rgba(60, 90, 130, 0.5), 0 0 10px rgba(173, 216, 230, 0.8), 0 0 20px rgba(173, 216, 230, 0.7), 0 0 30px rgba(173, 216, 230, 0.6)' }}>Art</h2>
+        <p className="text-xl md:text-2xl text-white max-w-2xl mx-auto text-center mb-8 drop-shadow-lg" style={{ 
+          fontFamily: "Ms Madi",
+          fontSize: '1.25rem',
+          lineHeight: '1.2'
+        }}>
           Explore a collection of original paintings that capture the beauty of nature and urban life. Each piece tells a unique story through colors and brushstrokes.
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -164,11 +168,11 @@ const Home = () => {
                   className="w-full object-cover aspect-[3/4]"
                 />
                 <div className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
-                  <h2 className="font-lora font-bold text-lg text-white mb-1 drop-shadow-lg">{painting.title}</h2>
+                  <h3 className="text-xl font-bold mb-2 text-white" style={{ fontFamily: "'Homemade Apple', cursive" }}>{painting.title}</h3>
                 </div>
               </div>
               <div className="p-4 flex-1 flex flex-col justify-between">
-                <div className="font-poppins text-base text-gray-800 font-semibold">{painting.title}</div>
+                <div className="text-base text-gray-800 font-semibold" style={{ fontFamily: "'Homemade Apple', cursive" }}>{painting.title}</div>
               </div>
             </Link>
           ))}
