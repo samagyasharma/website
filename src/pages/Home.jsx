@@ -12,6 +12,7 @@ import sunsetz from "../assets/images/Sunsetz.jpg";
 import flowers from "../assets/images/Flowers.jpg";
 import marilynMonroe from "../assets/images/marilyn-monroe.jpg";
 import intoYourEyes from "../assets/images/into-your-eyes.jpg";
+import backgroundImage from "../assets/images/background.jpg";
 
 const paintings = [
   {
@@ -120,20 +121,37 @@ const Home = () => {
 
   return (
     <div className="relative min-h-screen w-full">
-      <div className="w-full py-12 px-4 sm:px-8 lg:px-24">
-        <h1 className="text-5xl md:text-6xl font-water-brush font-normal text-center mb-2">Samagya Sharma</h1>
-        <h2 className="text-5xl md:text-6xl font-water-brush font-normal text-center mb-2">Art</h2>
-        <p className="text-xl text-gray-600 font-poppins max-w-2xl mx-auto text-center mb-8">
+      {/* Background Image Container */}
+      <div 
+        className="fixed inset-0 w-full h-full -z-10"
+        style={{
+          backgroundImage: `url(${backgroundImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          backgroundAttachment: 'fixed',
+          opacity: '0.7'
+        }}
+      >
+        {/* Violet Overlay */}
+        <div className="absolute inset-0 bg-violet-900/60" />
+      </div>
+
+      {/* Content Container */}
+      <div className="relative w-full py-12 px-4 sm:px-8 lg:px-24">
+        <h1 className="text-5xl md:text-6xl font-water-brush font-normal text-center mb-2 text-white drop-shadow-lg">Samagya Sharma</h1>
+        <h2 className="text-5xl md:text-6xl font-water-brush font-normal text-center mb-2 text-white drop-shadow-lg">Art</h2>
+        <p className="text-xl text-white font-poppins max-w-2xl mx-auto text-center mb-8 drop-shadow-lg">
           Explore a collection of original paintings that capture the beauty of nature and urban life. Each piece tells a unique story through colors and brushstrokes.
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {paintings.map((painting, idx) => (
+          {paintings.map((painting, idx) => (
             <Link
               to={`/painting/${painting.id}`}
               key={painting.id}
               ref={el => cardRefs.current[idx] = el}
               className={
-                `bg-white/80 rounded-lg shadow-lg overflow-hidden flex flex-col group transition-transform duration-300 ease-in-out hover:scale-105 opacity-0 translate-y-4` +
+                `bg-white/90 backdrop-blur-sm rounded-lg shadow-lg overflow-hidden flex flex-col group transition-transform duration-300 ease-in-out hover:scale-105 opacity-0 translate-y-4` +
                 ` transition-all duration-700` +
                 ` delay-` + idx * 100
               }
