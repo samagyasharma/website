@@ -120,47 +120,32 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="relative min-h-screen w-full">
-      {/* Background Image Container */}
-      <div 
-        className="fixed inset-0 w-full h-full -z-10"
-        style={{
-          backgroundImage: `url(${backgroundImage})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          backgroundAttachment: 'fixed',
-          opacity: '0.7'
-        }}
-      >
-        {/* Violet Overlay */}
-        <div className="absolute inset-0 bg-violet-900/60" />
-      </div>
-
+    <div className="relative min-h-screen w-full" style={{
+      background: 'linear-gradient(135deg, #e0d5ff 0%, #fef3c7 50%, #fce7f3 100%)'
+    }}>
       {/* Content Container */}
-      <div className="relative w-full py-12 px-4 sm:px-8 lg:px-24">
-        <div className="flex items-center justify-center gap-2 mb-2">
-          <h1 className="text-3xl md:text-4xl font-normal text-white drop-shadow-lg" style={{ 
-            fontFamily: "'Homemade Apple', cursive"
-          }}>Samagya</h1>
-          <span className="text-3xl md:text-4xl font-normal text-white drop-shadow-lg" style={{ 
-            fontFamily: "'Homemade Apple', cursive"
-          }}>   </span>
-          <span className="text-3xl md:text-4xl font-normal text-white drop-shadow-lg" style={{ 
-            fontFamily: "'Homemade Apple', cursive"
-          }}>   </span>
-          <h1 className="text-3xl md:text-4xl font-normal text-white drop-shadow-lg" style={{ 
-            fontFamily: "'Homemade Apple', cursive"
-          }}>Sharma</h1>
+      <div className="w-full py-12 px-4 sm:px-8 lg:px-24">
+        <div className="relative">
+          {/* Cloud-like effect */}
+          <div className="absolute inset-0 -z-10">
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-white/80 rounded-full blur-3xl"></div>
+          </div>
+          
+          <div className="flex items-center justify-center gap-2 mb-2">
+            <h1 className="text-5xl md:text-6xl font-normal text-black font-water-brush">Samagya</h1>
+            <span className="text-5xl md:text-6xl font-normal text-black font-water-brush">   </span>
+            <span className="text-5xl md:text-6xl font-normal text-black font-water-brush">   </span>
+            <h1 className="text-5xl md:text-6xl font-normal text-black font-water-brush">Sharma</h1>
+          </div>
+          <h2 className="text-5xl md:text-6xl font-water-brush font-normal text-center mb-2 text-black" style={{ textShadow: 'none' }}>Art</h2>
+          <p className="text-xl md:text-2xl text-gray-800 max-w-2xl mx-auto text-center mb-8" style={{ 
+            fontFamily: "'Calligraffitti', cursive",
+            fontSize: '1.25rem',
+            lineHeight: '1.2'
+          }}>
+            Explore a collection of original paintings. Each piece tells a unique story through colors and brushstrokes
+          </p>
         </div>
-        <h2 className="text-5xl md:text-6xl font-water-brush font-normal text-center mb-2 text-white drop-shadow-lg" style={{ textShadow: '2px 2px 6px rgba(60, 90, 130, 0.5), 0 0 10px rgba(173, 216, 230, 0.8), 0 0 20px rgba(173, 216, 230, 0.7), 0 0 30px rgba(173, 216, 230, 0.6)' }}>Art</h2>
-        <p className="text-xl md:text-2xl text-white max-w-2xl mx-auto text-center mb-8 drop-shadow-lg" style={{ 
-          fontFamily: "'Calligraffitti', cursive",
-          fontSize: '1.25rem',
-          lineHeight: '1.2'
-        }}>
-          Explore a collection of original paintings. Each piece tells a unique story through colors and brushstrokes
-        </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {paintings.map((painting, idx) => (
             <Link
