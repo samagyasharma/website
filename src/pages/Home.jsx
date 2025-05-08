@@ -121,14 +121,14 @@ const Home = () => {
 
   return (
     <div className="relative min-h-screen w-full" style={{
-      background: 'linear-gradient(135deg, #e0d5ff 0%, #fef3c7 50%, #fce7f3 100%)'
+      background: 'linear-gradient(90deg, #e0d5ff 0%, #e0d5ff min(20%, 140px), #fef3c7 min(20%, 140px), #fef3c7 60%, #fce7f3 100%)'
     }}>
       {/* Content Container */}
       <div className="w-full py-12 px-4 sm:px-8 lg:px-24">
         <div className="relative">
           {/* Cloud-like effect */}
-          <div className="absolute inset-0 -z-10">
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-white/80 rounded-full blur-3xl"></div>
+          <div className="absolute inset-0 -z-10 overflow-hidden">
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90vw] max-w-[800px] h-[50vw] max-h-[400px] bg-white/80 rounded-full blur-3xl"></div>
           </div>
           
           <div className="flex items-center justify-center gap-2 mb-2">
