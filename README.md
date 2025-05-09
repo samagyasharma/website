@@ -170,10 +170,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Samagya Sharma**
 - GitHub: [@samagyasharma](https://github.com/samagyasharma)
-
-## 🙏 Acknowledgments
-
-- React.js community
-- Tailwind CSS team
-- Vite.js team
-- All contributors and supporters 
