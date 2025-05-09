@@ -10,7 +10,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           <div className="flex items-center">
-            <Link to="/" className="text-2xl font-lora font-bold text-purple-800 hover:text-pink-600 transition-colors">
+            <Link to="/" className="text-2xl font-lora font-bold hover:text-pink-600 transition-colors" style={{ color: "#4a2c6d" }}>
               Art Gallery
             </Link>
           </div>

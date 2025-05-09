@@ -111,7 +111,7 @@ const PaintingDetails = () => {
 
           <div className="text-center space-y-6">
             <div className="flex items-center justify-center gap-4">
-              <h1 className="text-4xl md:text-5xl font-lora font-bold animate-slide-up" style={{ color: "#4a3c5c" }}>
+              <h1 className="text-4xl md:text-5xl font-bold animate-slide-up" style={{ fontFamily: "'Homemade Apple', cursive", color: "#4a2c6d" }}>
                 {painting.painting_name}
               </h1>
             </div>
