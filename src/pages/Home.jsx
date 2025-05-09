@@ -138,12 +138,11 @@ const Home = () => {
             <h1 className="text-5xl md:text-6xl font-normal text-black font-water-brush">Sharma</h1>
           </div>
           <h2 className="text-5xl md:text-6xl font-water-brush font-normal text-center mb-2 text-black" style={{ textShadow: 'none' }}>Art</h2>
-          <p className="text-xl md:text-2xl text-gray-800 max-w-2xl mx-auto text-center mb-8" style={{ 
-            fontFamily: "'Calligraffitti', cursive",
-            fontSize: '1.25rem',
-            lineHeight: '1.2'
+          <p className="text-xl md:text-2xl text-gray-600 text-center max-w-3xl mx-auto mb-12 animate-fade-in" style={{ 
+            fontFamily: "'Homemade Apple', cursive",
+            animationDelay: "0.2s"
           }}>
-            Explore a collection of original paintings. Each piece tells a unique story through colors and brushstrokes
+            Explore a collection of original paintings capturing a unique story through colors and brushstrokes.
           </p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
