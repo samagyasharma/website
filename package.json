@@ -1,9 +1,9 @@
 {
-  "name": "art-gallery-website",
+  "name": "paintsandpixels",
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://samagyasharma.github.io/website",
+  "homepage": "https://samagyasharma.github.io/paintsandpixels",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
