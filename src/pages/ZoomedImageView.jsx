@@ -84,9 +84,18 @@ const ZoomedImageView = () => {
 
   const handleZoom = () => {
     setZoomLevel((prev) => {
-      if (prev === 1) return 2;
-      if (prev === 2) return 3;
-      return 1;
+      switch (prev) {
+        case 1:
+          return 1.5;
+        case 1.5:
+          return 2;
+        case 2:
+          return 2.5;
+        case 2.5:
+          return 1;
+        default:
+          return prev;
+      }
     });
   };
 
@@ -125,16 +134,16 @@ const ZoomedImageView = () => {
           <img
             src={painting.image}
             alt={painting.title}
-            className={`transition-transform duration-300 ${
-              zoomLevel === 1 ? "scale-100" : 
-              zoomLevel === 2 ? "scale-150" : 
-              "scale-200"
-            }`}
-            style={{ maxHeight: "90vh", maxWidth: "90vw" }}
+            style={{ 
+              maxHeight: "90vh", 
+              maxWidth: "90vw",
+              transform: `scale(${zoomLevel})`,
+              transition: "transform 0.3s ease-in-out"
+            }}
           />
           {showInstructions && (
             <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-lg shadow-lg text-sm font-poppins text-gray-800 animate-fade-in-out">
-              Click to zoom (3 levels)
+              Click to zoom
             </div>
           )}
         </div>
