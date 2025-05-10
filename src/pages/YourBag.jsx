@@ -51,7 +51,7 @@ const YourBag = () => {
     <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8 bg-white">
       <h1 className="text-4xl md:text-5xl font-lora font-bold text-center mb-6">Your Bag</h1>
       <p className="text-center text-gray-500 font-poppins text-base md:text-lg leading-relaxed mb-8 max-w-2xl mx-auto px-2">
-        The details of your order will be given to the respective artists and you will be contacted. No payment required now.
+        The details of your order will be received. No payment required now.
       </p>
       <div className="space-y-8 max-w-3xl mx-auto mb-16">
         {bag.length === 0 && (
